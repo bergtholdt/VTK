@@ -146,9 +146,9 @@ endif()
 
 if (FALSE) # XXX(kitware): mangle library name
 install(TARGETS tiff
-        RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
 endif ()
 
 if (NOT VTK_INSTALL_NO_DEVELOPMENT) # XXX(kitware): install headers when VTK does
