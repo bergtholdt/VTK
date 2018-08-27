@@ -334,6 +334,12 @@ void vtkXRenderWindowInteractor::Initialize()
   // get the info we need from the RenderingWindow
   ren->SetDisplayId(this->DisplayId);
 
+  // don't show the window if doing off-scren rendering
+  if(this->RenderWindow->GetOffScreenRendering() == 1)
+  {
+    return;
+  }
+
   size    = ren->GetActualSize();
   size[0] = ((size[0] > 0) ? size[0] : 300);
   size[1] = ((size[1] > 0) ? size[1] : 300);
