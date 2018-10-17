@@ -171,11 +171,12 @@ endmacro()
 macro(_vtk_test_compiler_hidden_visibility)
   message(STATUS CMAKE_COMPILER_IS_GNUCXX ${CMAKE_COMPILER_IS_GNUCXX})
   message(STATUS CMAKE_C_COMPILER ${CMAKE_C_COMPILER})
-  
+
   if(CMAKE_COMPILER_IS_GNUCXX)
     execute_process(COMMAND ${CMAKE_C_COMPILER} --version
       OUTPUT_VARIABLE _gcc_version_info
       ERROR_VARIABLE _gcc_version_info)
+    message(STATUS _gcc_version_info ${_gcc_version_info})
     string(REGEX MATCH "[3-9]\\.[0-9]\\.[0-9]*"
       _gcc_version "${_gcc_version_info}")
     # gcc on mac just reports: "gcc (GCC) 3.3 20030304 ..." without the
@@ -185,6 +186,7 @@ macro(_vtk_test_compiler_hidden_visibility)
         _gcc_version "${_gcc_version_info}")
     endif()
 
+    message(STATUS _gcc_version ${_gcc_version})
     if(_gcc_version VERSION_LESS "4.2")
       set(GCC_TOO_OLD TRUE)
     endif()
