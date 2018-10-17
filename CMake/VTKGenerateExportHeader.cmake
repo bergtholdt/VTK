@@ -169,7 +169,9 @@ macro(_vtk_check_cxx_compiler_attribute _ATTRIBUTE _RESULT)
 endmacro()
 
 macro(_vtk_test_compiler_hidden_visibility)
-
+  message(STATUS CMAKE_COMPILER_IS_GNUCXX ${CMAKE_COMPILER_IS_GNUCXX})
+  message(STATUS CMAKE_C_COMPILER ${CMAKE_C_COMPILER})
+  
   if(CMAKE_COMPILER_IS_GNUCXX)
     execute_process(COMMAND ${CMAKE_C_COMPILER} --version
       OUTPUT_VARIABLE _gcc_version_info
@@ -200,6 +202,11 @@ macro(_vtk_test_compiler_hidden_visibility)
     endif()
   endif()
 
+  message(STATUS GCC_TOO_OLD ${GCC_TOO_OLD})
+  message(STATUS CMAKE_CXX_COMPILER_ID ${CMAKE_CXX_COMPILER_ID})
+  message(STATUS _INTEL_TOO_OLD ${_INTEL_TOO_OLD})
+  message(STATUS WIN32 ${WIN32})
+  message(STATUS CYGWIN ${CYGWIN})
 
   # Exclude XL here because it misinterprets -fvisibility=hidden even though
   # the check_cxx_compiler_flag passes
