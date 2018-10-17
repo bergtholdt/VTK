@@ -177,8 +177,11 @@ macro(_vtk_test_compiler_hidden_visibility)
       OUTPUT_VARIABLE _gcc_version_info
       ERROR_VARIABLE _gcc_version_info)
     message(STATUS _gcc_version_info ${_gcc_version_info})
-    string(REGEX MATCH "[3-9]\\.[0-9]\\.[0-9]*"
-      _gcc_version "${_gcc_version_info}")
+    # conda's gcc reports version as 86_64-conda_cos6-linux-gnu-cc (crosstool-NG 1.23.0.449-a04d0) 7.3.0
+    # so we want the last match    
+    string(REGEX MATCHALL "[3-9]\\.[0-9]\\.[0-9]*"
+      _gcc_versions "${_gcc_version_info}")
+    list(GET _gcc_versions -1 _gcc_version)
     # gcc on mac just reports: "gcc (GCC) 3.3 20030304 ..." without the
     # patch level, handle this here:
     if(NOT _gcc_version)
